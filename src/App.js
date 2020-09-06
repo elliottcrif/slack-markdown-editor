@@ -1,23 +1,63 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import ReactHtmlParser from "react-html-parser";
 
+import "./App.css";
+import { Parser } from "./util/lexer";
 function App() {
+  const parser = new Parser();
+  const input = `
+*bold*
+
+_italic_
+
+hello we are all good
+
+~strikethrough~
+
+> quote
+
+- List 1`;
+
+  const [text, setText] = useState("");
+
+  const onChange = (event) => {
+    const text = event.target.value;
+    setText(text);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      <header
+        className="App-header"
+        style={{ display: "flex", flexDirection: "row" }}
+      >
+        <textarea
+          style={{ width: "100%", height: "100vh", flex: 1 }}
+          onChange={onChange}
+        ></textarea>
+        <div
+          style={{
+            width: "50vw",
+            height: "100vh",
+            display: "flex",
+            flexDirection: "column",
+            flex: 1,
+          }}
         >
-          Learn React
-        </a>
+          <h1>Preview</h1>
+          <div
+            style={{
+              background: "grey",
+              borderRadius: "10px",
+              padding: "10px",
+              width: "100%",
+              flex: 1,
+              textAlign: "left",
+            }}
+          >
+            {parser.parse(text)}
+          </div>
+        </div>
       </header>
     </div>
   );
