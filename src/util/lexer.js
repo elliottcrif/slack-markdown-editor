@@ -28,12 +28,22 @@ export class Parser {
     });
 
     /**
+     * Bold
+     */
+    this.lexer.addRule(/```[a-z0-9\n ]*```/g, (text) => {
+      this.v.push({
+        type: "FENCED_CODE",
+        text: text.replace(/```/g, ""),
+      });
+    });
+
+    /**
      * Strikethrough
      */
     this.lexer.addRule(/~[A-z0-9]+~/g, (text) => {
       this.v.push({
         type: "STRIKETHROUGH",
-        text,
+        text: text.replace(/\~/g, ""),
       });
     });
 
@@ -60,7 +70,7 @@ export class Parser {
     /**
      * Paragraph
      */
-    this.lexer.addRule(/([a-z0-9A-Z]*\?*\.*\,*\s)*/g, (text) => {
+    this.lexer.addRule(/([a-z0-9A-Z]*\?*\.*\,* *)*/g, (text) => {
       this.v.push({ type: "PARAGRAPH", text });
     });
 
@@ -101,8 +111,17 @@ export class Parser {
             {token.text}
           </blockquote>
         );
+      case "FENCED_CODE":
+        return (
+          <pre
+            key={token.text}
+            style={{ background: "lightgray", color: "black" }}
+          >
+            {token.text}
+          </pre>
+        );
       case "NEW_LINE":
-        return <br></br>;
+        return <br key={"NEW_LINE"}></br>;
       default:
         return token.text;
     }

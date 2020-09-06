@@ -50,7 +50,6 @@ hello we are all good
               background: "grey",
               borderRadius: "10px",
               padding: "10px",
-              width: "100%",
               flex: 1,
               textAlign: "left",
             }}
