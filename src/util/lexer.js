@@ -48,16 +48,6 @@ export class Parser {
     });
 
     /**
-     * List Item
-     */
-    this.lexer.addRule(/-[ A-z0-9]+/g, (text) => {
-      this.v.push({
-        type: "LIST_ITEM",
-        text,
-      });
-    });
-
-    /**
      * BLOCK_QUOTE
      */
     this.lexer.addRule(/>[ A-z0-9]+\n*/g, (text) => {
@@ -135,6 +125,7 @@ export class Parser {
 
       return this.v.map((token) => this.toHTML(token));
     } catch (e) {
+      console.log(e);
       return input;
     } finally {
       console.log(this.v);
