@@ -9,6 +9,7 @@ body {
 
 blockquote {
   border-left: 2px solid white;
+  padding: 1em;
 }
 pre {
   padding: 0.5em;
