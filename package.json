@@ -12,7 +12,9 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-html-parser": "^2.0.2",
-    "react-scripts": "3.4.3"
+    "react-scripts": "3.4.3",
+    "showdown": "^1.9.1",
+    "slack-markdown": "0.0.4"
   },
   "scripts": {
     "start": "react-scripts start",

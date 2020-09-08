@@ -1,28 +1,13 @@
 import React, { useState } from "react";
-import ReactHtmlParser from "react-html-parser";
-
+import { toHTML } from "slack-markdown";
 import "./App.css";
-import { Parser } from "./util/lexer";
+import HtmlParser from "react-html-parser";
+
 function App() {
-  const parser = new Parser();
-  const input = `
-*bold*
-
-_italic_
-
-hello we are all good
-
-~strikethrough~
-
-> quote
-
-- List 1`;
-
   const [text, setText] = useState("");
 
   const onChange = (event) => {
-    const text = event.target.value;
-    setText(text);
+    setText(event.target.value);
   };
 
   return (
@@ -38,13 +23,13 @@ hello we are all good
         <div
           style={{
             width: "50vw",
-            height: "100vh",
             display: "flex",
             flexDirection: "column",
             flex: 1,
+            padding: "1em",
           }}
         >
-          <h1>Preview</h1>
+          <h1>Message Preview</h1>
           <div
             style={{
               background: "grey",
@@ -54,7 +39,7 @@ hello we are all good
               textAlign: "left",
             }}
           >
-            {parser.parse(text)}
+            {HtmlParser(toHTML(text))}
           </div>
         </div>
       </header>
