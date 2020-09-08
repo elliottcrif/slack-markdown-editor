@@ -10,8 +10,12 @@ body {
 blockquote {
   border-left: 2px solid white;
 }
-
+pre {
+  padding: 0.5em;
+  background: darkgray;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+  background: darkgrey;
 }
