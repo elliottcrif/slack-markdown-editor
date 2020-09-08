@@ -17,8 +17,9 @@ function App() {
         style={{ display: "flex", flexDirection: "row" }}
       >
         <textarea
-          style={{ width: "100%", height: "100vh", flex: 1 }}
+          style={{ width: "100%", height: "100vh", flex: 1, padding: "1em" }}
           onChange={onChange}
+          placeholder={"Start typing message."}
         ></textarea>
         <div
           style={{
